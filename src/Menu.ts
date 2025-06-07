@@ -1,6 +1,6 @@
-import { app, clearStage } from "./App";
+import { app, clearStageExcept } from "./App";
 import * as PIXI from "pixi.js";
-import { runAceOfShadows } from "./examples/AceOfShadows";
+import { AceOfShadows } from "./examples/AceOfShadows";
 
 type Example = {
   name: string;
@@ -11,31 +11,43 @@ export class Menu {
   private container: PIXI.Container;
   private examples: Example[];
 
+  private readonly TITLE_POSITION_X = 400;
+  private readonly TITLE_POSITION_Y = 50;
+
+  private readonly MENU_BUTTON_POSITION_X = 400;
+  private readonly MENU_BUTTON_POSITION_Y = 75;
+
+  private readonly TITLE_FONT_SIZE = 26;
+  private readonly BUTTON_FONT_SIZE = 20;
+
   constructor() {
     this.container = new PIXI.Container();
-    this.examples = [];
+    this.examples = [{ name: "Ace of Shadows", run: () => new AceOfShadows() }];
   }
 
   public show() {
-    clearStage();
+    clearStageExcept(this.container); // keep menu container, remove others
+    if (!app.stage.children.includes(this.container)) {
+      app.stage.addChild(this.container);
+    }
 
     app.stage.addChild(this.container);
 
     const titleStyle = new PIXI.TextStyle({
       fill: "white",
-      fontSize: 36,
+      fontSize: this.TITLE_FONT_SIZE,
       fontWeight: "bold",
     });
 
     const title = new PIXI.Text("Select an Example", titleStyle);
     title.anchor.set(0.5);
-    title.x = app.renderer.width / 2;
-    title.y = 100;
+    title.x = this.TITLE_POSITION_X;
+    title.y = this.TITLE_POSITION_Y;
     this.container.addChild(title);
 
     const buttonStyle = new PIXI.TextStyle({
       fill: "#00ccff",
-      fontSize: 28,
+      fontSize: this.BUTTON_FONT_SIZE,
       fontWeight: "bold",
     });
 
@@ -45,11 +57,14 @@ export class Menu {
       btn.interactive = true;
       (btn as any).buttonMode = true;
       btn.anchor.set(0.5);
-      btn.x = app.renderer.width / 2;
-      btn.y = 200 + i * 60;
+      btn.x = this.MENU_BUTTON_POSITION_X;
+      btn.y = this.MENU_BUTTON_POSITION_Y + i * 60;
 
       btn.on("pointerdown", () => {
-        clearStage();
+        clearStageExcept(this.container); // keep menu container, remove others
+        if (!app.stage.children.includes(this.container)) {
+          app.stage.addChild(this.container);
+        }
         example.run();
       });
 

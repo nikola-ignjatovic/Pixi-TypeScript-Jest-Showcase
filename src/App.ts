@@ -4,6 +4,7 @@
 // TODO test everything
 // TODO implement jest tests
 // TODO Host the application
+// TODO separate scene config would be nice to have config like width, height etc stored there
 
 import * as PIXI from "pixi.js";
 import { Menu } from "./Menu";
@@ -43,8 +44,8 @@ function resize() {
   app.renderer.resize(width, height);
 
   // base design size
-  const baseWidth = 1920;
-  const baseHeight = 1080;
+  const baseWidth = 800;
+  const baseHeight = 600;
 
   const scaleX = width / baseWidth;
   const scaleY = height / baseHeight;
@@ -66,9 +67,14 @@ window.addEventListener("resize", () => {
   resize();
 });
 
-// Helper to clear the stage for switching examples
-export function clearStage() {
-  app.stage.removeChildren();
+/**
+ * Helper to clear the stage for switching examples, but we can pass containerToKeep to prevent it from deletion (menu in this case)
+ * @param containerToKeep
+ */
+export function clearStageExcept(containerToKeep: PIXI.Container) {
+  app.stage.children
+    .filter((child) => child !== containerToKeep)
+    .forEach((child) => app.stage.removeChild(child));
 }
 
 resize();
