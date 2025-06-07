@@ -12,9 +12,32 @@ const canvas = app.view as HTMLCanvasElement;
 document.body.appendChild(canvas);
 canvas.id = "gameCanvas";
 
+// Add fullscreen button
+const fsButton = document.createElement("button");
+fsButton.id = "fsButton";
+fsButton.textContent = "Go Fullscreen";
+document.body.appendChild(fsButton);
+
+// Todo we can technically put a loading screen and then on press any key to continue call openFullScreen since browsers prevent opening of full screen without users interaction and that way we would force user to interact.
+const openFullScreen = () => {
+  if (canvas.requestFullscreen) {
+    canvas.requestFullscreen();
+  } else if ((canvas as any).webkitRequestFullscreen) {
+    // Safari support
+    (canvas as any).webkitRequestFullscreen();
+  } else if ((canvas as any).mozRequestFullScreen) {
+    // Firefox support
+    (canvas as any).mozRequestFullScreen();
+  } else if ((canvas as any).msRequestFullscreen) {
+    // IE/Edge support
+    (canvas as any).msRequestFullscreen();
+  }
+};
+
+fsButton.addEventListener("click", openFullScreen);
+
 // Simple FPS Counter
 const fpsCounter = document.createElement("div");
-fpsCounter.id = "fpsCounter";
 document.body.appendChild(fpsCounter);
 
 app.ticker.add(() => {
@@ -59,10 +82,11 @@ window.addEventListener("resize", () => {
   resize();
 });
 
-/**
- * Helper to clear the stage for switching examples, but we can pass containerToKeep to prevent it from deletion (menu in this case)
- * @param containerToKeep
- */
+// Also listen for fullscreen changes to resize accordingly
+document.addEventListener("fullscreenchange", () => {
+  resize();
+});
+
 export function clearStageExcept(containerToKeep: PIXI.Container) {
   app.stage.children
     .filter((child) => child !== containerToKeep)

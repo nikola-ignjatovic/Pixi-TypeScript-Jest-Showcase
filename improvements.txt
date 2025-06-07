@@ -5,3 +5,4 @@ How to improve this project:
 - Cover more parts of code with tests.
 - More documentation.
 - Code refactoring: Reducing the amount of magic numbers, more docs, sticking more to the coding principles of SOLID / KISS / DRY / ETC...
+- Implement loading screen so we can force user to open in full screen on "Press any key to continue" part
