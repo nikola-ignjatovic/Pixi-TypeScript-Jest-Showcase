@@ -19,7 +19,7 @@ export class AceOfShadows {
   private readonly CARD_AMOUNT = 144;
 
   private readonly CARD_POSITION_X = 300;
-  private readonly CARD_POSITION_Y = 110;
+  private readonly CARD_POSITION_Y = 170;
 
   constructor() {
     this.container = new PIXI.Container();
