@@ -1,6 +1,3 @@
-// TODO implement Magic Words
-// TODO Host the application
-
 import * as PIXI from "pixi.js";
 import { Menu } from "./Menu";
 
