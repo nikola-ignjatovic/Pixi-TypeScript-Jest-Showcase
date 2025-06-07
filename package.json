@@ -1,6 +1,14 @@
 {
   "dependencies": {
-    "pixi.js": "^7.4.3",
-    "typescript": "^5.8.3"
+    "pixi.js": "^7.4.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3",
+    "vite": "^6.3.5"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   }
 }
