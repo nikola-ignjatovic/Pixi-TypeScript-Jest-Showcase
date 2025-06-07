@@ -1,7 +1,4 @@
 // TODO implement Magic Words
-// TODO implement Phoenix Flame
-// TODO test everything
-// TODO implement jest tests
 // TODO Host the application
 // TODO separate scene config would be nice to have config like width, height etc stored there
 
