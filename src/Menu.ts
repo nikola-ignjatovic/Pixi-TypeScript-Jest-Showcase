@@ -2,6 +2,7 @@ import { app, clearStageExcept } from "./App";
 import * as PIXI from "pixi.js";
 import { AceOfShadows } from "./examples/AceOfShadows";
 import PhoenixFlame from "./examples/PhoenixFlame";
+import { MagicWords } from "./examples/MagicWords";
 
 type Example = {
   name: string;
@@ -27,6 +28,7 @@ export class Menu {
     this.examples = [
       { name: "Ace of Shadows", run: () => new AceOfShadows() },
       { name: "Phoenix Flame", run: () => new PhoenixFlame() },
+      { name: "Magic Words", run: () => new MagicWords() },
     ];
   }
 

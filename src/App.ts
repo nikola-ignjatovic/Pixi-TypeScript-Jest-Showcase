@@ -1,6 +1,5 @@
 // TODO implement Magic Words
 // TODO Host the application
-// TODO separate scene config would be nice to have config like width, height etc stored there
 
 import * as PIXI from "pixi.js";
 import { Menu } from "./Menu";
