@@ -1,4 +1,3 @@
-// TODO implement ace of shadows
 // TODO implement Magic Words
 // TODO implement Phoenix Flame
 // TODO test everything

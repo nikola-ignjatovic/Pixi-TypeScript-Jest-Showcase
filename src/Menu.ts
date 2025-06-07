@@ -1,6 +1,7 @@
 import { app, clearStageExcept } from "./App";
 import * as PIXI from "pixi.js";
 import { AceOfShadows } from "./examples/AceOfShadows";
+import PhoenixFlame from "./examples/PhoenixFlame";
 
 type Example = {
   name: string;
@@ -16,13 +17,17 @@ export class Menu {
 
   private readonly MENU_BUTTON_POSITION_X = 400;
   private readonly MENU_BUTTON_POSITION_Y = 75;
+  private readonly MENU_GAP_BETWEEN_BUTTONS_Y = 25;
 
   private readonly TITLE_FONT_SIZE = 26;
   private readonly BUTTON_FONT_SIZE = 20;
 
   constructor() {
     this.container = new PIXI.Container();
-    this.examples = [{ name: "Ace of Shadows", run: () => new AceOfShadows() }];
+    this.examples = [
+      { name: "Ace of Shadows", run: () => new AceOfShadows() },
+      { name: "Phoenix Flame", run: () => new PhoenixFlame() },
+    ];
   }
 
   public show() {
@@ -58,7 +63,7 @@ export class Menu {
       (btn as any).buttonMode = true;
       btn.anchor.set(0.5);
       btn.x = this.MENU_BUTTON_POSITION_X;
-      btn.y = this.MENU_BUTTON_POSITION_Y + i * 60;
+      btn.y = this.MENU_BUTTON_POSITION_Y + i * this.MENU_GAP_BETWEEN_BUTTONS_Y;
 
       btn.on("pointerdown", () => {
         clearStageExcept(this.container); // keep menu container, remove others

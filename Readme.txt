@@ -2,6 +2,8 @@ Simple project to showcase of PIXI functionalities combined with TypeScript.
 Partially covered with JEST tests.
 
 Code is well documented, reusable and easily changeable using constants and readonly properties of classes.
+Code is optimized for both mobile and desktop devices.
+Feel free to check the improvement list to see how this code could be upgraded.
 
 Required
 Node version: v20.16.0

@@ -1,0 +1,6 @@
+How to improve existing project:
+
+- It would be better if flame was created using atlas or spine, but 10 sprites are wanted as solution.
+- Cover more parts of code with tests.
+- More documentation.
+- Code refactoring: Reducing the amount of magic numbers, more docs, sticking more to the coding principles of SOLID / KISS / DRY / ETC...
